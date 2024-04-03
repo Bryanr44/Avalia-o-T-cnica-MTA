@@ -14,7 +14,7 @@ async function extrairDados() {
       if (columns.length >= 5) {
         return {
           nome: columns[2].textContent.trim(),
-          populacao: parseInt(columns[4].textContent.trim().replace(/\./g, ''), 10),
+          populacao: parseInt(columns[4].textContent.trim().replace(/\s/g, ''), 10),
           uf: columns[3].textContent.trim()
         };
       }
