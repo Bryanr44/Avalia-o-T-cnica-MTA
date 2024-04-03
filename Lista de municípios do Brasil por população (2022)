@@ -11,12 +11,14 @@ async function extrairDados() {
 
     return rows.map(row => {
       const columns = row.querySelectorAll('td');
-      return {
-        nome: columns[1].textContent.trim(),
-        populacao: parseInt(columns[2].textContent.trim().replace(/\./g, ''), 10),
-        uf: columns[0].textContent.trim()
-      };
-    });
+      if (columns.length >= 5) {
+        return {
+          nome: columns[2].textContent.trim(),
+          populacao: parseInt(columns[4].textContent.trim().replace(/\./g, ''), 10),
+          uf: columns[3].textContent.trim()
+        };
+      }
+    }).filter(item => item); // Remover itens undefined
   });
 
   await browser.close();
