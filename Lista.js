@@ -7,7 +7,7 @@ async function extrairDados() {
 
   const dadosCidades = await page.evaluate(() => {
     const rows = Array.from(document.querySelectorAll('table.wikitable tbody tr'));
-    rows.shift(); // Remover o cabeçalho da tabela
+    rows.shift();
 
     return rows.map(row => {
       const columns = row.querySelectorAll('td');
@@ -18,7 +18,7 @@ async function extrairDados() {
           uf: columns[3].textContent.trim()
         };
       }
-    }).filter(item => item); // Remover itens undefined
+    }).filter(item => item);
   });
 
   await browser.close();
